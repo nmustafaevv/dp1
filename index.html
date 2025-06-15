@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Твоя Погода</title>
+	<link rel="stylesheet" href="styles/style.css">
+	<link rel="stylesheet" href="styles/style_input.css">
+	<link rel="stylesheet" href="styles/style_output.css">
+	<link rel="stylesheet" href="styles/style_font.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Твоя Погода</h1>
+		<div class="input_block">
+			<div class="input_choice">
+				<div onclick="dropMenu()" class="dropbtn"><p id="drop_menu_text" >Название города</p></div>
+					<div id="Dropdown" class="input_choice-content">
+						<a id="drop_name" onclick="dropItem(1)" href="#">Название города</a>
+						<a id="drop_coordinates" onclick="dropItem(2)" href="#">Координаты</a>
+						<a id="drop_geolocation" onclick="dropItem(3)" href="#">Геолокация</a>
+					</div>
+			</div>
+			<div class="input_name">
+				<div id="inputName1" class="input_name_text">
+					<input id="nameCiry"type="text" placeholder="название города" value=""/>
+				</div>
+				<div id="inputName2" class="input_name_coordinates">
+					<input id="cordX" type="text" placeholder="X" value=""
+oninput="this.value = this.value.replace(/[^0-9.]/g,'').replace(/^0+/, '0').replace(/^0(?=[1-9])/, '')" />
+					<input id="cordY" type="text" placeholder="Y" value="" 
+oninput="this.value = this.value.replace(/[^0-9.]/g,'').replace(/^0+/, '0').replace(/^0(?=[1-9])/, '')" />
+				</div>
+				<div id="inputName3" class="input_name_geolocation">
+					<button onclick="getLocation()">определить</button>
+					<div id="location">
+						<p>Широта: <span id="locationX"></span></p>
+						<p>Долгота: <span id="locationY"></span></p>
+					</div>
+				</div>
+			</div>
+			<div class="input_search">
+				<img id="icon_search" onclick="searchWeather()" src="images/search-button.png" alt="">
+			</div>
+		</div>
+		
+		<div class="output_block">
+			<div id="controlL" class="output_control" onclick="showList('left')" style="left:3%; visibility:hidden">
+				<p>&#8249;</p>
+			</div>
+			<div class="output_list">
+				<div id="list1">
+					<p class="date">&nbsp</p>
+					<h1 id="cityName" style="text-align: center;">&nbsp</h1>
+					<hr>
+					</br>
+					<div class="icon__container">
+						<span id="icon__container-temp">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+						
+						</br></br></br>
+<!--						<img id="icon_weather" src="images/obl.svg" alt=""> -->
+					</div>
+					<div class="description__container">
+						
+						<ul>
+							<li>
+								<span>погода - </span>
+								<span id="weather">&nbsp</span>
+							</li>
+							<li>
+								<span>минимальная температура - </span>
+								<span id="temp-min">&nbsp</span>
+							</li>
+							<li>
+								<span>максимальная температура - </span>
+								<span id="temp-max">&nbsp</span>
+							</li>
+							<li>
+								<span>ощущается как - </span>
+								<span id="temp-sr">&nbsp</span>
+							</li>
+							<li>
+								</br>
+								</br>
+								<div class="lune__container">
+									<div>
+										<p style="font-size: 2rem;">Луна: </p>
+									</div>
+									<div class="lune__img"></div>
+									<div class="lune__text">
+										</br>
+										<span id="lt1">&nbsp</span>
+										</br>
+										<span id="lt2">&nbsp</span>
+										<span>&nbsp</span>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div id="list2" style="visibility:hidden;">
+					<div class="data__vdv">
+						<div class="data__value">
+							<div class="data_img">
+							<img src="images/dt1.png" alt="">
+							</div>
+							<h3>влажность</h3>
+							<p id="humidity">-</p>
+						</div>
+						<div class="data__value">
+							<div class="data_img">
+							<img src="images/dt2.png" alt="">
+							</div>
+							<h3>давление</h3>
+							<p id="pressure">-</p>
+						</div>
+						<div class="data__value">
+							<div class="data_img">
+							<img src="images/dt3.png" alt="">
+							</div>
+							<h3>видимость</h3>
+							<p id="visibility">-</p>
+						</div>
+					</div>
+					<div class="data__wind">
+						<h3>ветер</h3>
+						</br>
+						<hr>
+						<div class="data__value">
+							<div class="data_img">
+							<img src="images/dt4.png" alt="">
+							</div>
+							<h3>скорость</h3>
+							<p id="wind_speed">-</p>
+						</div>
+						<div class="data__value">
+							<div class="data_img">
+							<img src="images/dt5.png" alt="">
+							</div>
+							<h3>порывы</h3>
+							<p id="wind_gust">-</p>
+						</div>
+						<div class="data__value">
+							<div class="data_img">
+							<img src="images/dt6.png" alt="">
+							</div>
+							<h3>направление</h3>
+							<p id="wind_deg">-</p>
+						</div>
+					</div>
+				</div>
+				<div id="list3" style="visibility:hidden;">
+					<scroll-container id="scrollList" ></scroll-container>
+				</div>
+			</div>
+			<div id="controlR" class="output_control" onclick="showList('right')" style="right:3%;">
+				<p>&#8250;</p>
+			</div>
+		</div>
+	</div>
+	<script src="js/lune.js"></script>
+	<script src="js/visible.js"></script>
+	<script src="js/weather_script.js"></script>
+	
+</body>
+</html>
