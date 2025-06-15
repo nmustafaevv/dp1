@@ -1,0 +1,36 @@
+h1 {
+	font-size: 3rem;
+	letter-spacing: -2.16px;
+	font-weight: 700;
+}
+h2 {
+	font-weight: 800;
+	font-size: 1.7rem;
+	margin-top: 0.25rem;
+}
+h3 {
+	font-size: 1.3rem;
+	text-align: center;
+	font-weight: 400;
+}
+ul {
+	margin-top: 0.25rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
+li {
+	list-style: none;
+	display: table;
+	font-weight: 500;
+	font-size: 1.3rem;
+}
+li > span {
+	display: table-cell;
+}
+li > span + span {
+	text-align: right;
+	width: 1%;
+	vertical-align: bottom;
+	padding-left: 0.5rem;
+}
